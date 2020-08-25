@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Status Indicator</h1>
+
+<p>This page allows you to select the text of your LCD status indicator.</p>
+
+<p id="demo"></p>
+
+<button onclick="availableFunc()">Available</button>
+<br>
+<button onclick="busyFunc()">Busy</button>
+<br>
+<button onclick="awayFunc()">Away</button>
+<br>
+<button onclick="meetingFunc()">In a meeting</button>
+<br>
+<button onclick="phoneFunc()">On the phone</button>
+<br>
+<button onclick="gradingFunc()">Grading papers</button>
+<br>
+<button onclick="emailFunc()">Sending emails</button>
+<br>
+<button onclick="videoFunc()">On a video call</button>
+<br>
+<button onclick="thFunc()">Tom's Hardware</button>
+<br>
+<button onclick="clearFunc()">Clear Display</button>
+
+
+
+<script>
+
+var available = "http://0.0.0.0:5000/api/available";
+var busy = "http://0.0.0.0:5000/api/busy";
+var away = "http://0.0.0.0:5000/api/away";
+var meeting = "http://0.0.0.0:5000/api/meeting";
+var phone = "http://0.0.0.0:5000/api/phone";
+var grading = "http://0.0.0.0:5000/api/grading";
+var email = "http://0.0.0.0:5000/api/email";
+var video = "http://0.0.0.0:5000/api/video";
+var th = "http://0.0.0.0:5000/api/th";
+var clear = "http://0.0.0.0:5000/api/clear";
+
+function availableFunc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", available);
+  document.getElementById("demo").innerHTML = "Status set to Available";
+  xmlhttp.send();
+}
+function busyFunc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", busy);
+  document.getElementById("demo").innerHTML = "Status set to Busy";
+  xmlhttp.send();
+}
+function awayFunc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", away);
+  document.getElementById("demo").innerHTML = "Status set to Away";
+  xmlhttp.send();
+}
+function meetingFunc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", meeting);
+  document.getElementById("demo").innerHTML = "Status set to in a meeting";
+  xmlhttp.send();
+}
+function phoneFunc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", phone);
+  document.getElementById("demo").innerHTML = "Status set to on the phone";
+  xmlhttp.send();
+}
+function gradingFunc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", grading);
+  document.getElementById("demo").innerHTML = "Status set to grading papers";
+  xmlhttp.send();
+}
+function emailFunc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", email);
+  document.getElementById("demo").innerHTML = "Status set to sending to emails";
+  xmlhttp.send();
+}
+function videoFunc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", video);
+  document.getElementById("demo").innerHTML = "Status set to on a video call";
+  xmlhttp.send();
+}
+function thFunc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", th);
+  document.getElementById("demo").innerHTML = "Status set to Tom's Hardware.";
+  xmlhttp.send();
+}
+function clearFunc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", clear);
+  document.getElementById("demo").innerHTML = "Clear Status Screen";
+  xmlhttp.send();
+}
+</script>
+
+</body>
+</html>
