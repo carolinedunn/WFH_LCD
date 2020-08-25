@@ -3,9 +3,15 @@
 import i2c_lcd_driver
 from time import sleep
 from flask import Flask, jsonify, make_response, request
+from datetime import datetime
 mylcd = i2c_lcd_driver.lcd()
 
 app = Flask(__name__)
+
+def currentTime():
+	dateraw=datetime.now()
+	timeFormat=dateraw.strftime("%-I:%M %p")
+	return timeFormat
 
 def switchTH() :
 	mylcd.lcd_clear()
@@ -14,46 +20,62 @@ def switchTH() :
 	sleep(1)
 	
 def switchAvailable() :
+	cT=currentTime()
 	mylcd.lcd_clear()
-	mylcd.lcd_display_string("Caroline is", 1)
-	mylcd.lcd_display_string("available", 2)
+	mylcd.lcd_display_string("Status:Available", 1)
+	mylcd.lcd_display_string("as of "+cT, 2)
 	sleep(1)
 
 def switchBusy() :
+	cT=currentTime()
 	mylcd.lcd_clear()
-	mylcd.lcd_display_string("Caroline is", 1)
-	mylcd.lcd_display_string("busy", 2)
+	mylcd.lcd_display_string("Status: Busy", 1)
+	mylcd.lcd_display_string("as of "+cT, 2)
+	sleep(1)
+	
+def switchAway() :
+	cT=currentTime()
+	mylcd.lcd_clear()
+	mylcd.lcd_display_string("Status: Away", 1)
+	mylcd.lcd_display_string("as of "+cT, 2)
 	sleep(1)
 	
 def switchMeeting() :
+	cT=currentTime()
 	mylcd.lcd_clear()
-	mylcd.lcd_display_string("Caroline is", 1)
-	mylcd.lcd_display_string("in a meeting", 2)
+	mylcd.lcd_display_string("In a meeting", 1)
+	mylcd.lcd_display_string("as of "+cT, 2)
 	sleep(1)
 	
 def switchPhone() :
+	cT=currentTime()
 	mylcd.lcd_clear()
-	mylcd.lcd_display_string("Caroline is", 1)
-	mylcd.lcd_display_string("on the phone", 2)
+	mylcd.lcd_display_string("On the phone", 1)
+	mylcd.lcd_display_string("as of "+cT, 2)
 	sleep(1)
 	
 def switchGrading() :
+	cT=currentTime()
 	mylcd.lcd_clear()
-	mylcd.lcd_display_string("Dad is", 1)
-	mylcd.lcd_display_string("grading papers", 2)
+	mylcd.lcd_display_string("Grading papers", 1)
+	mylcd.lcd_display_string("as of "+cT, 2)
 	sleep(1)
 	
 def switchEmail() :
+	cT=currentTime()
 	mylcd.lcd_clear()
-	mylcd.lcd_display_string("Mom is replying", 1)
-	mylcd.lcd_display_string("to emails", 2)
+	mylcd.lcd_display_string("Sending Emails", 1)
+	mylcd.lcd_display_string("as of "+cT, 2)
 	sleep(1)
 	
 def switchVideo() :
+	cT=currentTime()
 	mylcd.lcd_clear()
-	mylcd.lcd_display_string("Caroline is", 1)
-	mylcd.lcd_display_string("on a video call", 2)
+	mylcd.lcd_display_string("On a video call", 1)
+	mylcd.lcd_display_string("as of "+cT, 2)
 	sleep(1)
+	
+
 
 def switchClear() :
 	mylcd.lcd_clear()
@@ -75,6 +97,12 @@ def apiavailable() :
 @app.route('/api/busy', methods=['GET'])
 def apiBusy() :
 	switchBusy()
+	return jsonify({})
+	
+# API Away
+@app.route('/api/away', methods=['GET'])
+def apiAway() :
+	switchAway()
 	return jsonify({})
 	
 # API switchMeeting
