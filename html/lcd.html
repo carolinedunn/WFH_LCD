@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--Section 1 START-->
 <html>
 <body>
 
@@ -28,10 +29,10 @@
 <br>
 <button onclick="clearFunc()">Clear Display</button>
 
-
+<!--Section 1 END-->
 
 <script>
-
+///////////////// Section 2 START////////////////////
 var available = "http://0.0.0.0:5000/api/available";
 var busy = "http://0.0.0.0:5000/api/busy";
 var away = "http://0.0.0.0:5000/api/away";
@@ -42,7 +43,8 @@ var email = "http://0.0.0.0:5000/api/email";
 var video = "http://0.0.0.0:5000/api/video";
 var th = "http://0.0.0.0:5000/api/th";
 var clear = "http://0.0.0.0:5000/api/clear";
-
+///////////////// Section 2 END////////////////////
+///////////////// Section 3 START////////////////////
 function availableFunc() {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.open("GET", available);
@@ -103,6 +105,7 @@ function clearFunc() {
   document.getElementById("demo").innerHTML = "Clear Status Screen";
   xmlhttp.send();
 }
+///////////////// Section 3 END////////////////////
 </script>
 
 </body>
