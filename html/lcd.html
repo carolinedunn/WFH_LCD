@@ -4,19 +4,23 @@
 
 <h1>Status Indicator</h1>
 
-<p>This page allows you to set the text of your LCD status indicator.</p>
+<p>This page allows you to select the text of your LCD status indicator.</p>
+
+<p id="demo"></p>
 
 <button onclick="availableFunc()">Available</button>
 <br>
 <button onclick="busyFunc()">Busy</button>
 <br>
+<button onclick="awayFunc()">Away</button>
+<br>
 <button onclick="meetingFunc()">In a meeting</button>
 <br>
 <button onclick="phoneFunc()">On the phone</button>
 <br>
-<button onclick="gradingFunc()">Grading Papers</button>
+<button onclick="gradingFunc()">Grading papers</button>
 <br>
-<button onclick="emailFunc()">Replying to Emails</button>
+<button onclick="emailFunc()">Sending emails</button>
 <br>
 <button onclick="videoFunc()">On a video call</button>
 <br>
@@ -24,12 +28,13 @@
 <br>
 <button onclick="clearFunc()">Clear Display</button>
 
-<p id="demo"></p>
+
 
 <script>
 
 var available = "http://0.0.0.0:5000/api/available";
 var busy = "http://0.0.0.0:5000/api/busy";
+var away = "http://0.0.0.0:5000/api/away";
 var meeting = "http://0.0.0.0:5000/api/meeting";
 var phone = "http://0.0.0.0:5000/api/phone";
 var grading = "http://0.0.0.0:5000/api/grading";
@@ -48,6 +53,12 @@ function busyFunc() {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.open("GET", busy);
   document.getElementById("demo").innerHTML = "Status set to Busy";
+  xmlhttp.send();
+}
+function awayFunc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", away);
+  document.getElementById("demo").innerHTML = "Status set to Away";
   xmlhttp.send();
 }
 function meetingFunc() {
@@ -71,7 +82,7 @@ function gradingFunc() {
 function emailFunc() {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.open("GET", email);
-  document.getElementById("demo").innerHTML = "Status set to replying to emails";
+  document.getElementById("demo").innerHTML = "Status set to sending to emails";
   xmlhttp.send();
 }
 function videoFunc() {
