@@ -2,11 +2,12 @@
 
 import i2c_lcd_driver
 from time import sleep
-from flask import Flask, jsonify, make_response, request
+from flask import Flask, jsonify, make_response, request, render_template
 from datetime import datetime
 mylcd = i2c_lcd_driver.lcd()
 
 app = Flask(__name__)
+#app.config['SERVER_NAME']= 'caroline.local'
 
 def currentTime():
     dateraw=datetime.now()
@@ -146,6 +147,13 @@ def apiClear() :
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
-
+    
+@app.route('/')
+def index():
+    #url_for('html', filename='lcd.html')
+    return render_template('lcd.html')
+    
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=False)
+    app.debug = True
+    app.run(host='0.0.0.0')
+    #app.run(host='10.0.0.113')
